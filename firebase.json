@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "job-portal",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

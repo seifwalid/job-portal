@@ -1,7 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { SeekerRegistrationComponent } from './components/seeker-registration/seeker-registration.component';
+import { RecruiterRegistrationComponent } from './components/recruiter-registration/recruiter-registration.component';
+import { SeekerPageComponent } from './components/seeker-page/seeker-page.component';
+import { RecruiterPageComponent } from './components/recruiter-page/recruiter-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: "", component: HomeComponent },
+  { path: "home", component: HomeComponent },
+  { path: "seeker", component: SeekerPageComponent },
+  { path: "recruiter", component: RecruiterPageComponent },
+  { path: "login", component: LoginComponent },
+  { path: "register/seeker", component: SeekerRegistrationComponent },
+  { path: "register/recruiter", component: RecruiterRegistrationComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

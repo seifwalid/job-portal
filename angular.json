@@ -98,8 +98,28 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "job-portal:build:production",
+              "serveTarget": "job-portal:serve:production"
+            },
+            "development": {
+              "buildTarget": "job-portal:build:development",
+              "serveTarget": "job-portal:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "0eb0971f-8d15-497a-aa23-dca6ba311df4"
   }
 }
