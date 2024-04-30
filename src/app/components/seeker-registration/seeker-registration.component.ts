@@ -17,15 +17,21 @@ export class SeekerRegistrationComponent {
   constructor(public readonly auth: AngularFireAuth, private db: AngularFirestore
   ) { }
   async handleSeekerRegistration() {
-    this.auth.createUserWithEmailAndPassword(this.email, this.password).then((res) => {
-      this.db.collection("users").doc(res.user?.uid).set({
+    try {
+      const res = await this.auth.createUserWithEmailAndPassword(this.email, this.password);
+
+      await this.db.collection("users").doc(res.user?.uid).set({
         name: this.name,
         email: this.email,
         role: this.role,
-        appliedJobs: []
+        appliedJobsIds: []
       });
-    }).finally(() => {
-      window.location.href = "/login";
-    }).catch((e) => { console.log(e) })
+
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 1000);
+    } catch (e) {
+      console.log(e);
+    }
   }
 }

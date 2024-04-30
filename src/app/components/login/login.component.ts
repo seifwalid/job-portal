@@ -23,10 +23,10 @@ export class LoginComponent {
     this.auth.user.subscribe((user: any) => {
       if (user) {
         this.db.collection("users").doc(user.uid).valueChanges().subscribe((u: any) => {
-          if (u.role === "seeker") {
+          if (u && u.role === "seeker") {
             window.location.href = "/seeker";
           }
-          else if (u.role === "recruiter") {
+          else if (u && u.role === "recruiter") {
             window.location.href = "/recruiter";
           }
         })
@@ -38,10 +38,10 @@ export class LoginComponent {
     this.isAuthenticated = true;
     this.auth.signInWithEmailAndPassword(this.email, this.password).then((res) => {
       this.db.collection("users").doc(res.user?.uid).valueChanges().subscribe((u: any) => {
-        if (u.role === "seeker") {
+        if (u && u.role === "seeker") {
           window.location.href = "/seeker";
         }
-        else if (u.role === "recruiter") {
+        else if (u && u.role === "recruiter") {
           window.location.href = "/recruiter";
         }
       })
