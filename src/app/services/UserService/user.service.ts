@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { User } from '../../models/User';
 import { firstValueFrom } from 'rxjs';
-import { Firestore, addDoc, collection, getDocs, query } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 /**
  * Service for managing users.
  * Provides methods for creating, reading, updating, and deleting users.
@@ -11,14 +10,14 @@ import { Firestore, addDoc, collection, getDocs, query } from '@angular/fire/fir
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private db: AngularFireDatabase ) { }
-posts: any[] = []; 
+  constructor(private db: AngularFirestore) { }
+  posts: any[] = [];
   /**
    * Creates a new user.
    * @param user - The details of the new user.
    */
   async createUser(user: User) {
-    await this.db.object<User>(`users/${user.id}`).set(user);
+    await this.db.collection<User>("users").doc(user.id).set(user);
   }
 
   /**
@@ -27,32 +26,47 @@ posts: any[] = [];
    * @returns The user with the specified ID.
    */
   async getUser(userId: string) {
-    const user$ = this.db.object<User>(`users/${userId}`).valueChanges();
-    return firstValueFrom(user$);
+    const user$ = this.db.collection<User>(`users`).doc(userId).valueChanges();
+    return await firstValueFrom(user$);
   }
-async test(){
-    await this.db.list('users').valueChanges().subscribe(posts => {
-      this.posts = posts;
-    });
-    console.log(this.posts); // This will log an array of user objects
-}
+
+  /**
+   * Retrieves a user by their ID.
+   * @param userId - The ID of the user to retrieve.
+   * @returns The user with the specified ID.
+   */
+  async getUserJobs(userId: string) {
+    const user$ = await this.getUser(userId);
+    let jobs$, appliedJobs, postedJobs;
+    if (user$?.role === "seeker") {
+      appliedJobs = (user$?.appliedJobsIds ?? []).map(async (jobId) => {
+        const temp = this.db.doc(jobId).valueChanges();
+        return await firstValueFrom(temp);
+      })
+    }
+    else if (user$?.role === "recruiter") {
+      jobs$ = this.db.doc(user$?.postedJobsIds![1]!).valueChanges();
+    }
+    console.log(jobs$);
+    return {
+      appliedJobs,
+      postedJobs
+    };
+  }
+
   /**
    * Updates a user.
    * @param user - The updated details of the user.
    */
   async updateUser(user: User) {
-    await this.db.object<User>(`users/${user.id}`).update(user);
+    await this.db.collection<User>(`users`).doc(user.id).update(user);
   }
-  async getSpecificUser(){
-    
-const userr =   await this.db.object<User>(`users/`)
-console.log(userr);   
-}
+
   /**
    * Deletes a user.
    * @param userId - The ID of the user to delete.
    */
   async deleteUser(userId: string) {
-    await this.db.object(`users/${userId}`).remove();
+    await this.db.collection<User>(`users`).doc(userId).delete();
   }
 }

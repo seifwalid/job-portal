@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../../services/firebaseService/firebase.service';
+// import { FirebaseService } from '../../services/firebaseService/firebase.service';
 import { Observable, map, tap, toArray } from 'rxjs';
 import { User } from '../../models/User';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -12,7 +12,7 @@ import { Message } from 'primeng/api';
 export class CompanyProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
-    private firebaseService: FirebaseService
+    // private firebaseService: FirebaseService
   ) {}
 
     usedUser:any; 
@@ -30,7 +30,7 @@ export class CompanyProfileComponent implements OnInit {
     this.isLoading = true;
     setTimeout(() => {
       this.isLoading = false;
-      this.companyData=this.firebaseService.getCurrentUserData()
+      // this.companyData=this.firebaseService.getCurrentUserData()
     }, 2000);
 
     console.log(this.usedUser); 
@@ -57,7 +57,7 @@ export class CompanyProfileComponent implements OnInit {
   // onSaveClick(){ }
   // onCancelClick(){ }
   testUser(){
-    this.firebaseService.getCurrentUserID();
+    // this.firebaseService.getCurrentUserID();
     console.log("hello");
   }
   delay() {
@@ -88,7 +88,7 @@ this.companyData.subscribe(user => {
   user.email = email;
     // console.log(user);
     
-   this.firebaseService.updateUser(user);
+  //  this.firebaseService.updateUser(user);
 
   this.isEditing = false;
 

@@ -1,7 +1,10 @@
+import { UserService } from './../../services/UserService/user.service';
 import { Component } from '@angular/core';
-import { FirebaseService } from '../../services/firebaseService/firebase.service';
-import { Observable, map } from 'rxjs';
+// import { FirebaseService } from '../../services/firebaseService/firebase.service';
+import { Observable, firstValueFrom, map } from 'rxjs';
 import { User } from '../../models/User';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-job-list',
@@ -10,27 +13,15 @@ import { User } from '../../models/User';
 })
 export class JobListComponent {
 
+  constructor(private db: AngularFirestore, private userService: UserService, private auth: AngularFireAuth) { }
 
-  UserData!:Observable<User>;
-
-  constructor(private db :FirebaseService){}
-
-  test(){
-const user =this.mapObservable();
-
-console.log(user); 
+  async test() {
+    const { uid } = (await firstValueFrom(this.auth.user))!;
+    const { appliedJobsIds } = (await this.userService.getUser(uid))!;
+    const arr = (appliedJobsIds ?? []).map(async (job) => {
+      const jobs$ = this.db.collection("jobs").doc(job).valueChanges();
+      return await firstValueFrom(jobs$);
+    })
+    console.log(arr)
   }
-
-
-  mapObservable(){
-    this.UserData=this.db.getCurrentUserData();
-    return this.UserData.pipe( map(value => ({
-    
-      name: value.name,
-      contactInfo: value.companyContactInfo,
-
-    }))
-  );
-  }
-
 }

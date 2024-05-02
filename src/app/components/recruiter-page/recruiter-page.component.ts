@@ -1,4 +1,3 @@
-import { FirebaseService } from './../../services/firebaseService/firebase.service';
 import { UserService } from './../../services/UserService/user.service';
 import { Component } from '@angular/core';
 
@@ -9,15 +8,15 @@ import { Component } from '@angular/core';
 })
 export class RecruiterPageComponent {
 
-  constructor(private readonly user :UserService , private  fire: FirebaseService) { }
+  constructor(private readonly user: UserService) { }
 
-  async test(){
-    console.log("hello");
-    const user  =this.fire.getUser(); 
-    console.log(user);
-  }
+  // async test() {
+  //   console.log("hello");
+  //   const user = this.fire.getUser();
+  //   console.log(user);
+  // }
   async getSpecificUser() {
-    
+
   }
 
 }

@@ -54,7 +54,6 @@ import { JobListComponent } from './components/job-list/job-list.component';
     JobListComponent 
   ],
   imports: [
-
     CardModule, 
     InputMaskModule,
     InputTextModule,
