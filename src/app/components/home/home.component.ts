@@ -1,20 +1,25 @@
+import { Firestore } from '@angular/fire/firestore';
+import { Observable, observable } from 'rxjs';
+import { FirebaseService } from './../../services/firebaseService/firebase.service';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
-
   isAuthenticated: boolean = false;
-  email: string = "";
-  password: string = "";
+  email: string = '';
+  password: string = '';
   user: any | null = {};
-
-  constructor(public readonly auth: AngularFireAuth
-  ) { }
+  user$: Observable<User> | undefined; 
+  constructor(
+    public readonly auth: AngularFireAuth,
+    private fire: FirebaseService
+  ) {}
 
   ngOnInit(): void {
     this.auth.user.subscribe((user: any) => {
@@ -28,7 +33,12 @@ export class HomeComponent {
     this.auth.signOut();
   }
 
+  test() {
+    this.user$ = this.fire.getUser();
+   
+  }
+
   signIn() {
-    this.auth.signInWithEmailAndPassword("admin@gmail.com", "Admin123");
+    this.auth.signInWithEmailAndPassword('admin@gmail.com', 'Admin123');
   }
 }

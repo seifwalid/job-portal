@@ -12,6 +12,8 @@ export class RecruiterRegistrationComponent {
   @Input() name: string = '';
   @Input() email: string = '';
   @Input() password: string = '';
+  @Input() companyDescription: string = ''; 
+  @Input() companyContactInfo: string = ''; 
   role: string = 'recruiter'; // Role set to 'recruiter'
 
   constructor(public readonly auth: AngularFireAuth, private db: AngularFirestore) { }
@@ -24,7 +26,9 @@ export class RecruiterRegistrationComponent {
         name: this.name,
         email: this.email,
         role: this.role,
-        postedJobsIds: []
+        companyDescription: this.companyDescription, 
+        companyContactInfo: this.companyContactInfo, 
+        postedJobsIds: [],
       });
 
       setTimeout(() => {

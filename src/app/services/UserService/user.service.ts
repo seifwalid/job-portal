@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { User } from '../../models/User';
 import { firstValueFrom } from 'rxjs';
-
+import { Firestore, addDoc, collection, getDocs, query } from '@angular/fire/firestore';
 /**
  * Service for managing users.
  * Provides methods for creating, reading, updating, and deleting users.
@@ -11,8 +11,8 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private db: AngularFireDatabase) { }
-
+  constructor(private db: AngularFireDatabase ) { }
+posts: any[] = []; 
   /**
    * Creates a new user.
    * @param user - The details of the new user.
@@ -30,7 +30,12 @@ export class UserService {
     const user$ = this.db.object<User>(`users/${userId}`).valueChanges();
     return firstValueFrom(user$);
   }
-
+async test(){
+    await this.db.list('users').valueChanges().subscribe(posts => {
+      this.posts = posts;
+    });
+    console.log(this.posts); // This will log an array of user objects
+}
   /**
    * Updates a user.
    * @param user - The updated details of the user.
@@ -38,7 +43,11 @@ export class UserService {
   async updateUser(user: User) {
     await this.db.object<User>(`users/${user.id}`).update(user);
   }
-
+  async getSpecificUser(){
+    
+const userr =   await this.db.object<User>(`users/`)
+console.log(userr);   
+}
   /**
    * Deletes a user.
    * @param userId - The ID of the user to delete.

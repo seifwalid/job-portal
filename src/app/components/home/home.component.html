@@ -1,1 +1,6 @@
 <p>home works!</p>
+<div *ngIf="user$ | async as user">
+    <p>User Name: {{ user.name }}</p>
+    <p>User Email: {{ user.email }}</p>
+</div>
+<button (click)="test()">click me </button>

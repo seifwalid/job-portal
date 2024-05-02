@@ -1,0 +1,87 @@
+
+
+<p-card
+  *ngIf="companyData | async as companyData"
+  styleClass="user-form"
+  class="flex justify-content-center"
+>
+  <div>
+    <h2>Company Profile</h2>
+    <div class="ui grid">
+      <div class="ui eight wide column" *ngIf="!isEditing">
+        <ul class="list-unstyled">
+          <li><b>Name:</b> {{ companyData.name }}</li>
+          <li><b>Address:</b> {{ companyData.companyDescription }}</li>
+          <li><b>ConactInfo:</b> {{ companyData.companyContactInfo }}</li>
+          <li><b>email:</b> {{ companyData.email }}</li>
+        </ul>
+        <button
+          (click)="editCompanyProfile()"
+          pButton
+          type="button"
+          label="Edit Profile"
+          icon="pi pi-pencil"
+          iconPos="right"
+        ></button>
+      </div>
+
+      <div class="ui eight wide column" *ngIf="isEditing">
+        <p-card>
+          <form [formGroup]="contactForm" (ngSubmit)="updateCompanyProfile()">
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input
+                pInputText
+                type="text"
+                id="companyName"
+                formControlName="companyName"
+                [ngModel]="companyData.name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input
+                pInputText
+                rows="5"
+                id="description"
+                formControlName="description"
+                [ngModel]="companyData.companyDescription"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                pInputText
+                type="email"
+                id="email"
+                formControlName="email"
+                [ngModel]="companyData.email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="contactInfo">Contact Info</label>
+              <input
+                pInputText
+                type="text"
+                id="contactInfo"
+                formControlName="contactInfo"
+                [ngModel]="companyData.companyContactInfo"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary p-button p-component">
+              Submit
+            </button>
+            <p-button (click)="toggleEdit()" icon="pi pi-times" severity="danger"></p-button>
+          </form>
+        </p-card>
+      </div>
+    </div>
+  </div>
+  <p-messages [value]="error" severity="error" *ngIf="error"></p-messages>
+</p-card>
+<p-messages [value]="error" severity="error" *ngIf="error"></p-messages>
+<p-progressBar mode="indeterminate" *ngIf="isLoading"></p-progressBar>
