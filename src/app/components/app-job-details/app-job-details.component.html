@@ -1,0 +1,22 @@
+
+
+<div *ngIf="job | async as job">
+    <div class="card">
+        <div class="card-header">
+            {{ job.title }}
+        </div>
+        <div class="card-body">
+            <p>{{ job.description }}</p>
+            <p>Location: {{ job.location }}</p>
+            <p>Salary: {{ job.salary }}</p>
+            <p>Qualifications: {{ job.qualifications }}</p>
+            <p>Company: {{ job.companyName }}</p>
+        </div>
+        <div class="card-footer">
+            <button pButton type="button" label="Edit" icon="pi pi-pencil" (click)="editJob()"></button>
+            <button pButton type="button" label="Delete" icon="pi pi-trash" (click)="deleteJob()"></button>
+            <button pButton type="button" label="Pause" icon="pi pi-pause" (click)="pauseJob()" *ngIf="status === 'active'"></button>
+            <button pButton type="button" label="Resume" icon="pi pi-play" (click)="resumeJob()" *ngIf="status === 'paused'"></button>
+        </div>
+    </div>
+</div>

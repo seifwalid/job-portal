@@ -1,5 +1,6 @@
 // model
 export interface User {
+    map(arg0: (jobGroup: any) => any): any;
     id: string;
     name: string;
     email: string;

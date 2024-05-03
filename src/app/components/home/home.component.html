@@ -1,11 +1,15 @@
-<p>home works!</p>
-<div *ngFor="let job of jobs">
-  <div>{{ job.title }}</div>
-  <button (click)="deleteJob(job)">delete</button>
-  <button (click)="editJob(job)">edit</button>
-  <!-- <div>{{ job.description }}</div> -->
-  <!-- Other job information you want to display -->
-</div>
+<div *ngIf="users | async as user">
+  <h2>{{ user.name }}</h2>
+  <p>{{ user.companyDescription }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Contact Info: {{ user.companyContactInfo }}</p>
+  <p>Role: {{ user.role }}</p>
 
-<button (click)="test()">click me</button>
-<button (click)="createJob()">create a job</button>
+  <h3>Posted Jobs:</h3>
+  <ul>
+    <li *ngFor="let jobId of user.postedJobsIds">
+      {{ jobId  }}
+       <app-job-details [jobId]="jobId"></app-job-details> 
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,31 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.card-header,
+.card-body,
+.card-footer {
+    padding: 10px;
+}
+
+.card-header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.card-footer {
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.card-footer button {
+    margin-right: 10px;
+}

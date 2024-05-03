@@ -1,10 +1,13 @@
-import { firstValueFrom, Observable } from 'rxjs';
+import { Job } from './../../models/Job';
+import { defaultIfEmpty, firstValueFrom, Observable } from 'rxjs';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from '../../models/User';
 import { UserService } from '../../services/UserService/user.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { v4 as uuid } from 'uuid';
+import { collection, doc, docData, Firestore } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-home',
@@ -19,40 +22,80 @@ export class HomeComponent {
   uid: string = "";
   jobs?: any[] = [];
 
+
+    users!: Observable<User>;
+
   constructor(
     public readonly auth: AngularFireAuth,
     private userService: UserService,
     private db: AngularFirestore,
-  ) { }
+    private firestore: Firestore
+  ) { 
+   
+  }
+  
+  
 
-  async ngOnInit(): Promise<void> {
-    this.auth.user.subscribe(async (user: any) => {
-      this.isAuthenticated = !!user;
-      this.user = user;
-      this.uid = user.uid;
-      console.log('user', user?.uid ?? null);
-      const u = await this.userService.getUser(this.uid);
-      let jobs = (u?.postedJobsIds ?? []).map(async (jobRef) => {
-        const t = this.db.doc(jobRef).valueChanges();
-        return await firstValueFrom(t);
-      })
-      this.jobs = await Promise.all(jobs);
-      console.log(u)
-      console.log(this.jobs)
-    });
+  // this.auth.user.subscribe(async (user: any) => {
+  //   this.isAuthenticated = !!user;
+  //   this.user = user;
+  //   this.uid = user.uid;
+  //   console.log('user', user?.uid ?? null);
+  //   const u = await this.userService.getUser(this.uid);
+  //   let jobs = (u?.postedJobsIds ?? []).map(async (jobRef) => {
+  //     const t = this.db.doc(jobRef).valueChanges();
+  //     return await firstValueFrom(t);
+  //   })
+  //   this.jobs = await Promise.all(jobs);
+  //   console.log(u)
+  //   console.log(this.jobs)
+  // });
+  
+
+  async ngOnInit() {
+  this.users= this.getUser();
+  }
+
+  getUser():Observable<User>  {
+
+    const usersCOllection =collection(this.firestore, "users"); 
+     const UserDoc = doc(usersCOllection,"4ym3fVkelSaBuizj4E8uUUITFmu1");
+    const users = docData(UserDoc)
+    console.log(users);
+    return users as  Observable<User>; 
+    
   }
 
   signOut() {
     this.auth.signOut();
   }
 
-  async test() {
-    this.user = await this.userService.getUser(this.user?.uid);
-    console.log("user", this.user);
-    const jobs = await this.userService.getUserJobs(this.uid);
-    console.log("jobs", jobs);
+  // async test() {
+  //   this.user = await this.userService.getUser(this.user?.uid);
+  //   console.log("user", this.user);
+  //   const jobs = await this.userService.getUserJobs(this.uid);
+  //   console.log("jobs", jobs);
+  // }
+
+
+  test(id: string) {
+  
+    const usersCOllection =collection(this.firestore, "jobs"); 
+     const UserDoc = doc(usersCOllection,id);
+    const users = docData(UserDoc)
+    console.log(users);
+    return users as  Observable<Job>;
+
   }
 
+  fetchJobsDetails(id: any) {
+    const usersCOllection =collection(this.firestore, "jobs"); 
+     const UserDoc = doc(usersCOllection,id);
+    const users = docData(UserDoc)
+    console.log(users);
+    return users as  Observable<Job>; 
+
+  }
   async createJob() {
     this.user = await this.userService.getUser(this.uid);
     const newJob = {
@@ -74,7 +117,9 @@ export class HomeComponent {
     });
   }
 
-  editJob(job: any) { }
+  editJob(job: any) {
+    console.log(job); 
+  }
   deleteJob(job: any) { }
 
   signIn() {
