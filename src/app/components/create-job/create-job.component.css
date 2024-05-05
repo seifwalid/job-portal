@@ -1,17 +1,6 @@
-.custom-btn{
-    margin-top: 10px;
-   
-}
-
-ul {
-    list-style: none;
-    padding: 0; /* Remove default padding if needed */
-    margin: 0; /* Remove default margin if needed */
-  }
-
-  /* Style for form container */
+/* Style for form container */
 .job-form {
-    max-width: 700px;
+    max-width: 400px;
     margin: 0 auto;
   }
   
@@ -51,7 +40,6 @@ ul {
     background-color: #007bff;
     color: #fff;
     border: none;
-    width: auto;
     margin-right:20px ;
     border-radius: 5px;
     cursor: pointer;
@@ -64,10 +52,5 @@ ul {
   /* Style for error messages */
   .p-invalid {
     border-color: #dc3545 !important;
-  }
-
-  .btn{
-    width: 70px;
-    height:40px;
   }
   

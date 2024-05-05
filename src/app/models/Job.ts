@@ -5,9 +5,11 @@ export interface Job {
     description: string;
     location: "remote" | "hybrid" | "onsite";
     salary: number;
-    status: "open" | "closed";
+    status:string;
+    benefits:string;
+    responsibilities:string;
     qualifications:string ;
-    companyName: string;
+    // companyName: string;
     applicants: string[];
     postedBy: string;
 }

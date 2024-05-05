@@ -1,7 +1,48 @@
 <div *ngIf="users | async as user">
     <div style="display: flex; margin: 20px 30px 10px 0px; justify-content: flex-end;">
-        <button pButton type="button" icon="pi pi-plus" label="Add Job" class="custom-button"></button>
+        <button *ngIf="!add" pButton type="button" icon="pi pi-plus" label="Add Job" class="custom-button" (click)="toggleAdd()"></button>
+
+        <button pButton *ngIf="add" type="button" icon="pi pi-plus" label="cancel" class="custom-button" (click)="toggleAdd()"></button>
     </div>
+    <form *ngIf="add" [formGroup]="jobForm" (ngSubmit)="createjob(user)" class="job-form">
+      <div class="p-field">
+        <label for="title">Title</label>
+        <input type="text" id="title" formControlName="title" class="p-input" />
+      </div>
+      <div class="p-field">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" class="p-input"></textarea>
+      </div>
+       <div class="p-field">
+        <label for="benefits">benefits</label>
+        <textarea id="benefits" formControlName="benefits" class="p-input"></textarea>
+      </div> 
+       <div class="p-field">
+        <label for="responsibilities">responsibilties</label>
+        <textarea id="responsibilities" formControlName="responsibilities" class="p-input"></textarea>
+      </div> 
+      <div class="p-field">
+        <label for="location">Location</label>
+        <select id="location" formControlName="location" class="p-input">
+          <option value="on-site">On Site</option>
+          <option value="hybrid">Hybrid</option>
+          <option value="remote">Remote</option>
+        </select>
+      </div>
+      <div class="p-field">
+        <label for="salary">Salary</label>
+        <input type="text" id="salary" formControlName="salary" class="p-input" />
+      </div>
+      <div class="p-field">
+        <label for="qualifications">Qualifications</label>
+        <textarea id="qualifications" formControlName="qualifications" class="p-input"></textarea>
+      </div>
+      <button pButton type="submit"   label="Submit"></button>
+      <button pButton  label="cancel"  (click)="toggleAdd()" ></button>
+    </form>
+        
+    <!-- <create-job *ngIf="add" ></create-job>   -->
+  
     <h3>Posted Jobs:</h3>
     <ul>
       <li *ngFor="let jobId of user.postedJobsIds">

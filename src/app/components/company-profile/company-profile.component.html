@@ -19,6 +19,7 @@
           (click)="editCompanyProfile()"
           pButton
           type="button"
+          class="btn-edit"
           label="Edit Profile"
           icon="pi pi-pencil"
           iconPos="right"
@@ -44,6 +45,7 @@
               <input
                 pInputText
                 rows="5"
+                type="text"
                 id="description"
                 formControlName="description"
                 [ngModel]="companyData.companyDescription"
@@ -73,9 +75,9 @@
               />
             </div>
             <button type="submit" class="btn btn-primary p-button p-component">
-              Submit
+             update Profile
             </button>
-            <p-button (click)="toggleEdit()" icon="pi pi-times" severity="danger"></p-button>
+            <p-button (click)="toggleEdit()" icon="pi pi-times" severity="danger" class="btn-cancel"></p-button>
           </form>
         </p-card>
       </div>

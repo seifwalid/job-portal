@@ -1,31 +1,146 @@
 .card {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid #ccc;
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     margin-bottom: 20px;
+    transition: all 0.2s ease-in-out; /* Smooth hover effects */
+  }
+  
+  .card:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  }
+  
+  .card-header {
+    padding: 15px 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    background-color: #f5f5f5; /* Light background for header */
+  }
+  
+  .card-body {
+    padding: 20px;
+    color: #333;
+  }
+  
+  .card-body p {
+    margin-bottom: 10px;
+  }
+  
+  .card-footer {
+    padding: 10px 20px;
+    display: flex; /* Arrange buttons horizontally */
+    justify-content: space-between; /* Space buttons evenly */
+    background-color: #eee;
+  }
+  
+  .p-button {
+    /* Style buttons based on your UI framework */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .p-button:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Style buttons based on their purpose (optional) */
+  .p-button[icon="pi pi-pencil"] {
+    color: #3c94ff; /* Blue for edit */
+  }
+  
+  .p-button[icon="pi pi-trash"] {
+    color: #ff3333; /* Red for delete */
+  }
+  
+  .p-button[icon="pi pi-pause"] {
+    color: #f99; /* Orange for pause */
+  }
+  
+  .p-button[icon="pi pi-play"] {
+    color: #00c853; /* Green for resume */
+  }
+  /* Style for form container */
+.job-form {
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-.card-header,
-.card-body,
-.card-footer {
-    padding: 10px;
+/* Style for form fields */
+.p-field {
+  margin-bottom: 20px;
 }
 
-.card-header {
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ccc;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+/* Style for labels */
+label {
+  display: block;
+  font-weight: bold;
 }
 
-.card-footer {
-    background-color: #f0f0f0;
-    border-top: 1px solid #ccc;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+/* Style for input fields */
+.p-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.card-footer button {
-    margin-right: 10px;
+/* Style for select fields */
+.p-input select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
+
+/* Style for submit button */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  margin-right:20px ;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Style for error messages */
+.p-invalid {
+  border-color: #dc3545 !important;
+}
+.btn-cancel{
+  color: red;
+
+  margin-bottom: 10px;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.btn-submit{
+  color: green;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+

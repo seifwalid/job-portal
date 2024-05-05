@@ -1,3 +1,4 @@
+import { CompanyService } from './../../services/companyService/company.service';
 import { Component, OnInit } from '@angular/core';
 // import { FirebaseService } from '../../services/firebaseService/firebase.service';
 import { Observable, map, tap, toArray } from 'rxjs';
@@ -12,7 +13,7 @@ import { Message } from 'primeng/api';
 export class CompanyProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
-    // private firebaseService: FirebaseService
+     private CompanyService: CompanyService
   ) {}
 
     usedUser:any; 
@@ -30,7 +31,7 @@ export class CompanyProfileComponent implements OnInit {
     this.isLoading = true;
     setTimeout(() => {
       this.isLoading = false;
-      // this.companyData=this.firebaseService.getCurrentUserData()
+      this.companyData=this.CompanyService.getCurrentUserData()
     }, 2000);
 
     console.log(this.usedUser); 
@@ -86,9 +87,9 @@ this.companyData.subscribe(user => {
   user.companyContactInfo = contactInfo;
   user.companyDescription = description;
   user.email = email;
-    // console.log(user);
+  console.log(user);
     
-  //  this.firebaseService.updateUser(user);
+   this.CompanyService.updateUser(user);
 
   this.isEditing = false;
 

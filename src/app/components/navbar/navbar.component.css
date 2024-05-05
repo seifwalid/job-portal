@@ -8,6 +8,9 @@
   padding: 1.5rem;
 }
 
+ .ng-container {
+  inherits:true;
+}
 .navbar-brand {
   font-weight: bold;
   color: #333;
@@ -33,4 +36,24 @@
 
 .nav-link:hover {
   text-decoration: underline;
+}
+.navbar-nav .nav-item .nav-link {
+  /* Your styles for nav-links inside the navbar */
+  font-size: 1.2rem;
+  color: #333; /* Text color */
+}
+
+/* Active link */
+.navbar-nav .nav-item.active .nav-link {
+  color: #007bff; /* Active link color */
+}
+
+/* Toggle button */
+.navbar-toggler {
+  border: none; /* Remove border */
+}
+
+/* Toggle button icon color */
+.navbar-toggler-icon {
+  color: #333; /* Icon color */
 }

@@ -1,8 +1,111 @@
 .user-form {
-    width: 30%;
-  }
-  
-.p-inputtext {
-    width: 100%;
-    padding-bottom: 10px;
-  }
+  /* Set background color, border, padding, margin, etc. */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px auto; /* Center the card horizontally */
+  width: 500px; /* Adjust width as needed */
+  align-items: center;
+}
+
+/* Center the card body content */
+.user-form .ui-g {
+  display: flex;
+  justify-content: center;
+}
+.btn-edit{
+  margin-top: 10px;
+margin-left: 0px;
+}
+
+.user-form .ui-g .ui-g-8 {
+  flex: 0 0 auto;
+  width: auto;
+}
+.btn-cancel{
+  margin-left: 10px;
+}
+/* Center the form within the card body */
+.user-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.ui.grid {
+  /* Remove default grid styles from UI framework */
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.ui.eight.wide.column {
+  /* Adjust column width based on your grid system */
+  flex: 0 0 50%;
+  padding: 10px;
+}
+h2 {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.list-unstyled {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-unstyled li {
+  margin-bottom: 5px;
+}
+
+/* Style list item content (bold for labels) */
+.list-unstyled li b {
+  font-weight: bold;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.btn-primary,
+.p-button {
+  /* Style buttons based on your UI framework */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.p-button.p-component {
+  margin-left: 10px; /* Adjust spacing between buttons */
+}
+
+.p-button[severity="danger"] {
+  background-color: #dc3545; /* Red for cancel button */
+}
+.p-messages {
+  margin-top: 10px;
+}
+.p-progressBar {
+  margin: 10px auto;
+  width: 50%; /* Adjust width as needed */
+}

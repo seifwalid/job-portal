@@ -1,0 +1,23 @@
+<!-- 
+<div>
+    <input type="text" [(ngModel)]="searchKeyword" (input)="filterJobs()" placeholder="Search by job title">
+    <select [(ngModel)]="jobType" (change)="filterJobs()">
+      <option value="">All</option>
+      <option value="onsite">Onsite</option>
+      <option value="hybrid">Hybrid</option>
+      <option value="remote">Remote</option>
+    </select>
+    <button (click)="resetFilters()">Reset Filters</button>
+  </div>
+  
+  <div *ngIf="filteredJobs && filteredJobs.length > 0; else noJobsFound">
+    <div *ngFor="let job of filteredJobs">
+      <h3>{{ job.title }}</h3>
+      <p>{{ job.location }}</p>
+      <p>{{ job.type }}</p>
+    </div>
+  </div>
+  
+  <ng-template #noJobsFound>
+    <p>No jobs found.</p>
+  </ng-template> -->

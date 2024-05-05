@@ -39,6 +39,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PrimeIcons } from 'primeng/api';
 import { JobListComponent } from './components/job-list/job-list.component';
 import { AppJobDetailsComponent } from './components/app-job-details/app-job-details.component';
+import { CreateJobComponent } from './components/create-job/create-job.component';
+import { SeekerJobListingComponent } from './components/seeker-job-listing/seeker-job-listing.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { AppJobDetailsComponent } from './components/app-job-details/app-job-det
     RecruiterPageComponent,
     CompanyProfileComponent,
     JobListComponent,
-    AppJobDetailsComponent 
+    AppJobDetailsComponent,
+    CreateJobComponent,
+    SeekerJobListingComponent 
   ],
   imports: [
     CardModule, 

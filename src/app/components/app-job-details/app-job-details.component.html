@@ -1,22 +1,99 @@
-
-
 <div *ngIf="job | async as job">
-    <div class="card">
-        <div class="card-header">
-            {{ job.title }}
-        </div>
-        <div class="card-body">
-            <p>{{ job.description }}</p>
-            <p>Location: {{ job.location }}</p>
-            <p>Salary: {{ job.salary }}</p>
-            <p>Qualifications: {{ job.qualifications }}</p>
-            <p>Company: {{ job.companyName }}</p>
-        </div>
-        <div class="card-footer">
-            <button pButton type="button" label="Edit" icon="pi pi-pencil" (click)="editJob()"></button>
-            <button pButton type="button" label="Delete" icon="pi pi-trash" (click)="deleteJob()"></button>
-            <button pButton type="button" label="Pause" icon="pi pi-pause" (click)="pauseJob()" *ngIf="status === 'active'"></button>
-            <button pButton type="button" label="Resume" icon="pi pi-play" (click)="resumeJob()" *ngIf="status === 'paused'"></button>
-        </div>
+  <div class="card">
+    <div class="card-header">
+      {{ job.title }}
     </div>
+    <div class="card-body">
+      <p>description: {{ job.description }}</p>
+      <p>Location: {{ job.location }}</p>
+      <p>Salary: {{ job.salary }}</p>
+      <p>Qualifications: {{ job.qualifications }}</p>
+      <p>Company: {{ job.companyName }}</p>
+    </div>
+    <div class="card-footer">
+      <button
+        pButton
+        type="button"
+        label="Edit"
+        icon="pi pi-pencil"
+        (click)="toggleEdit()"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Delete"
+        icon="pi pi-trash"
+        (click)="deleteJob()"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Pause"
+        icon="pi pi-pause"
+        (click)="pauseJob(job)"
+        *ngIf="job.status=== 'open'"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Resume"
+        icon="pi pi-play"
+        (click)="resumeJob(job)"
+        *ngIf="job.status === 'closed'"
+      ></button>
+    </div>
+  </div>
+  <form
+    *ngIf="edit"
+    [formGroup]="jobForm"
+    (ngSubmit)="editJob(job)"
+    class="job-form"
+  >
+    <div class="p-field">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="p-input"
+        [ngModel]="job.title"
+      />
+    </div>
+    <div class="p-field">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="p-input"
+        [ngModel]="job.description"
+      ></textarea>
+    </div>
+    <div class="p-field">
+      <label for="location">Location</label>
+      <select id="location" formControlName="location" class="p-input" [ngModel]="job.location">
+        <option value="on-site">On Site</option>
+        <option value="hybrid">Hybrid</option>
+        <option value="remote">Remote</option>
+      </select>
+    </div>
+    <div class="p-field">
+      <label for="salary">Salary</label>
+      <input type="text" id="salary" formControlName="salary" class="p-input"  [ngModel]="job.salary"/>
+    </div>
+    <div class="p-field">
+      <label for="qualifications">Qualifications</label>
+      <textarea
+        id="qualifications"
+        formControlName="qualifications"
+        class="p-input"
+        [ngModel]="job.qualifications"
+      ></textarea>
+    </div>
+
+    <div>
+      <button pButton class="btn-submit"  (click)="editJob(job)" label="edit"></button>
+
+      <button pButton class="btn-cancel" label="cancel" (click)="toggleEdit()"></button>
+    </div>
+  </form>
 </div>
