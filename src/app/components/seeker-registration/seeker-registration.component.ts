@@ -24,7 +24,8 @@ export class SeekerRegistrationComponent {
         name: this.name,
         email: this.email,
         role: this.role,
-        appliedJobsIds: []
+        appliedJobsIds: [],
+        savedJobsIds: []
       });
 
       setTimeout(() => {

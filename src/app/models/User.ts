@@ -7,6 +7,7 @@ export interface User {
     role: "seeker" | "recruiter";
     postedJobsIds: User["role"] extends "seeker" ? string[] : null;
     appliedJobsIds: User["role"] extends "recruiter" ? string[] : null;
+    savedJobsIds: User["role"] extends "seeker" ? string[] : null;
     companyDescription:User["role"] extends "seeker"? string[]:null;
     companyContactInfo:User["role"] extends "seeker"? string[]:null;
     

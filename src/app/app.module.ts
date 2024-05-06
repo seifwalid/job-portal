@@ -41,6 +41,9 @@ import { JobListComponent } from './components/job-list/job-list.component';
 import { AppJobDetailsComponent } from './components/app-job-details/app-job-details.component';
 import { CreateJobComponent } from './components/create-job/create-job.component';
 import { SeekerJobListingComponent } from './components/seeker-job-listing/seeker-job-listing.component';
+import { SeekerJobCardComponent } from './components/seeker-job-card/seeker-job-card.component';
+import { PostedbyComponent } from './components/postedby/postedby.component';
+
 
 
 @NgModule({
@@ -57,7 +60,9 @@ import { SeekerJobListingComponent } from './components/seeker-job-listing/seeke
     JobListComponent,
     AppJobDetailsComponent,
     CreateJobComponent,
-    SeekerJobListingComponent 
+    SeekerJobListingComponent,
+    SeekerJobCardComponent,
+    PostedbyComponent,
   ],
   imports: [
     CardModule, 

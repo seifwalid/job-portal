@@ -34,6 +34,7 @@ export class CompanyService {
 
   getCurrentUserData(): Observable<User> {
     const uid = this.getCurrentUserID();
+    console.log(uid);
     const usersCOllection = collection(this.firestore, 'users');
     const UserDoc = doc(usersCOllection, uid);
     const users = docData(UserDoc);

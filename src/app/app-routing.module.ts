@@ -1,3 +1,4 @@
+import { SeekerJobListingComponent } from './components/seeker-job-listing/seeker-job-listing.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -12,7 +13,7 @@ import { JobListComponent } from './components/job-list/job-list.component';
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "home", component: HomeComponent },
-  { path: "seeker", component: SeekerPageComponent },
+  { path: "seeker", component: SeekerJobListingComponent },
   { path:"profile",component:CompanyProfileComponent},
   { path: "recruiter", component: RecruiterPageComponent },
   { path: "login", component: LoginComponent },

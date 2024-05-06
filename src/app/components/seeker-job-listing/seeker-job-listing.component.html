@@ -1,23 +1,38 @@
-<!-- 
-<div>
-    <input type="text" [(ngModel)]="searchKeyword" (input)="filterJobs()" placeholder="Search by job title">
-    <select [(ngModel)]="jobType" (change)="filterJobs()">
-      <option value="">All</option>
-      <option value="onsite">Onsite</option>
+<div ><button
+  pButton
+  pRipple
+  icon="pi pi-search"
+  label="Filter Search"
+  (click)="toggleFilter()"
+></button>
+
+<form
+  *ngIf="filter"
+  [formGroup]="jobForm"
+  (ngSubmit)="filterSearch()"
+  class="job-form"
+>
+  <div class="p-field">
+    <label for="title">Title</label>
+    <input type="text" id="title" formControlName="title" class="p-input" />
+  </div>
+
+  <div class="p-field">
+    <label for="location">Location</label>
+    <select id="location" formControlName="location" class="p-input">
+      <option value="on-site">On Site</option>
       <option value="hybrid">Hybrid</option>
       <option value="remote">Remote</option>
     </select>
-    <button (click)="resetFilters()">Reset Filters</button>
   </div>
-  
-  <div *ngIf="filteredJobs && filteredJobs.length > 0; else noJobsFound">
-    <div *ngFor="let job of filteredJobs">
-      <h3>{{ job.title }}</h3>
-      <p>{{ job.location }}</p>
-      <p>{{ job.type }}</p>
-    </div>
+  <div class="p-field">
+    <label for="salary">Salary</label>
+    <input type="text" id="salary" formControlName="salary" class="p-input" />
   </div>
-  
-  <ng-template #noJobsFound>
-    <p>No jobs found.</p>
-  </ng-template> -->
+  <button pButton (click)="showfilter()" label="Submit"></button>
+  <button pButton label="cancel" (click)="toggleFilter()"></button>
+</form>
+<div *ngFor="let job of jobs | async">
+  <app-seeker-job-card [job]="job" ></app-seeker-job-card>
+</div>
+</div>
