@@ -8,16 +8,15 @@ import { Observable } from 'rxjs';
   styleUrl: './postedby.component.css'
 })
 export class PostedbyComponent {
-@Input() user!: any;
+@Input() id!: any;
 company!:Observable<any> ;
 constructor(private firestore:AngularFirestore) { 
-  console.log("i constructed company");
-  console.log(this.user);
+
 }
 
-OnInit(): void {
-  this.company= this.firestore.collection('users').doc(this.user).valueChanges(); 
+ngOnInit(): void {
+  this.company= this.firestore.collection('users').doc(this.id).valueChanges(); 
 
-  console.log("i fetched company");
+console.log (this.id);
   }
 }

@@ -1,0 +1,20 @@
+<div *ngIf="User | async as user" class="card">
+  <div *ngIf="checkFilter(user)">
+    <div class="card-header">
+      <img [src]="user.profilePic" alt="" />
+    </div>
+    <div class="card-body">
+      <p>name: {{ user.name }}</p>
+      <p>email: {{ user.email }}</p>
+    </div>
+    <div class="card-footer">
+      <button
+        pButton
+        type="button"
+        label="Pause"
+        icon="pi pi-user"
+        (click)="showResume(user)"
+      ></button>
+    </div>
+  </div>
+</div>

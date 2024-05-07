@@ -33,6 +33,6 @@
   <button pButton label="cancel" (click)="toggleFilter()"></button>
 </form>
 <div *ngFor="let job of jobs | async">
-  <app-seeker-job-card [job]="job" ></app-seeker-job-card>
+  <app-seeker-job-card [job]="job"  ></app-seeker-job-card>
 </div>
 </div>

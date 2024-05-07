@@ -1,3 +1,5 @@
+
 <div *ngIf="company |async as com">
 <p>postedby : {{ com.name }}</p>
+<img class="logo" [src]="com.profilePic" alt="">
 </div>

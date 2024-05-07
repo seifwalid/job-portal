@@ -9,7 +9,8 @@
         <p>Location: {{ job.location }}</p>
         <p>Salary: {{ job.salary }}</p>
         <p>Qualifications: {{ job.qualifications }}</p>
-  
+        <app-postedby [id]="job.postedby"></app-postedby>
+        
         <div *ngIf="expanded">
           <p>Benefits: {{ job.benefits }}</p>
           <p>Responsibilities: {{ job.responsibilities }}</p>

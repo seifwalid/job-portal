@@ -1,3 +1,4 @@
+import { CompanyService } from './../companyService/company.service';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
@@ -14,7 +15,7 @@ import { User } from '../../models/User';
   providedIn: 'root',
 })
 export class SeekerService {
-  constructor(private db: AngularFirestore, private firestore: Firestore) {}
+  constructor(private db: AngularFirestore, private firestore: Firestore, private companyService:CompanyService) {}
 
   getFilteredJobs(salary: any, location: any, title: any) {
     if (!salary && !location && title) {
@@ -92,9 +93,27 @@ export class SeekerService {
 
   }
 
+  unsaveJob(id:any , user: any, jobId: string) {
+    const index = user.savedJobsIds.indexOf(jobId);
+    if (index > -1) {
+      user.savedJobsIds.splice(index, 1);
+    }
+    console.log(user);
+    this.db.collection('users').doc(id).update(user);
+  }
+
   getJobs() {
     const productsCoolection = collection(this.firestore, 'jobs');
     const result = collectionData(productsCoolection);
     return result as Observable<any>;
   }
+
+  applyForJob(job: any, user: any) {
+    const id =this.companyService.getCurrentUserID();
+    job.applicants.push(id);
+    this.db.collection('jobs').doc(job.id).update(job);
+
+    user.appliedJobsIds.push(job.id);
+    this.db.collection('users').doc(id).update(user);
+  } 
 }

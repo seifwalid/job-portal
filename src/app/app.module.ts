@@ -46,6 +46,9 @@ import { PostedbyComponent } from './components/postedby/postedby.component';
 import { SavedJobsComponent } from './components/saved-jobs/saved-jobs.component';
 import { SavedCardsComponent } from './components/saved-cards/saved-cards.component';
 import { ImageTestComponent } from './components/image-test/image-test.component';
+import { SeekerProfileComponent } from './components/seeker-profile/seeker-profile.component';
+import { ApplicantCardComponent } from './components/applicant-card/applicant-card.component';
+import { AllApplicantsComponent } from './components/all-applicants/all-applicants.component';
 
 
 
@@ -69,6 +72,9 @@ import { ImageTestComponent } from './components/image-test/image-test.component
     SavedJobsComponent,
     SavedCardsComponent,
     ImageTestComponent,
+    SeekerProfileComponent,
+    ApplicantCardComponent,
+    AllApplicantsComponent,
   ],
   imports: [
     CardModule, 

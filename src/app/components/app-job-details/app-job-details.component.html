@@ -2,13 +2,14 @@
   <div class="card">
     <div class="card-header">
       {{ job.title }}
+      <button pButton class="applic" label="show Applicants"  (click)="toggleApplicants()"></button>
     </div>
     <div class="card-body">
       <p>description: {{ job.description }}</p>
       <p>Location: {{ job.location }}</p>
       <p>Salary: {{ job.salary }}</p>
       <p>Qualifications: {{ job.qualifications }}</p>
-      <p>Company: {{ job.companyName }}</p>
+  
     </div>
     <div class="card-footer">
       <button
@@ -23,7 +24,7 @@
         type="button"
         label="Delete"
         icon="pi pi-trash"
-        (click)="deleteJob()"
+        (click)="deleteJob(job)"
       ></button>
       <button
         pButton
@@ -41,6 +42,11 @@
         (click)="resumeJob(job)"
         *ngIf="job.status === 'closed'"
       ></button>
+    </div>
+  </div>
+  <div *ngIf="applicants">
+    <div *ngFor="let applicant of job.applicants">
+      <app-applicant-card [id]="applicant"></app-applicant-card>
     </div>
   </div>
   <form
@@ -87,6 +93,24 @@
         formControlName="qualifications"
         class="p-input"
         [ngModel]="job.qualifications"
+      ></textarea>
+    </div>
+    <div class="p-field">
+      <label for="benefits">benefits</label>
+      <textarea
+        id="benefits"
+        formControlName="benefits"
+        class="p-input"
+        [ngModel]="job.benefits"
+      ></textarea>
+    </div>
+    <div class="p-field">
+      <label for="responsibilities">responsibilities</label>
+      <textarea
+        id="responsibilities"
+        formControlName="responsibilities"
+        class="p-input"
+        [ngModel]="job.responsibilities"
       ></textarea>
     </div>
 

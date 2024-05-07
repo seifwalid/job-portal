@@ -16,7 +16,7 @@ export class AppJobDetailsComponent {
   @Input() jobId!: string;
 
   @Input() user!: any;
-
+  applicants:boolean = false;
   edit = false;
   status :string = "active";
   job!: Observable<any>;
@@ -30,7 +30,9 @@ export class AppJobDetailsComponent {
       description: [''],
       location: [''],
       salary: [''],
-      qualifications: ['']
+      qualifications: [''],
+      benefits: [''],
+      responsibilities: ['']
     });
 
     console.log(this.jobId);
@@ -48,11 +50,16 @@ export class AppJobDetailsComponent {
   } 
   
 
-
+  toggleApplicants(){
+    this.applicants = !this.applicants;
+  }
   toggleEdit(){
     this.edit = !this.edit;
   }
-  deleteJob(){}
+  deleteJob(job:any){
+      console.log(job);
+    this.CompanyService.deleteCompanyJob(job);
+  }
 
   pauseJob(job:any){
     job.status = "closed"; 
@@ -81,6 +88,8 @@ export class AppJobDetailsComponent {
     job.location = this.jobForm.value.location;
     job.salary = this.jobForm.value.salary;
     job.qualifications = this.jobForm.value.qualifications;
+    job.benefits = this.jobForm.value.benefits;
+    job.responsibilities = this.jobForm.value.responsibilities;
     this.CompanyService.editJob(job);
     this.toggleEdit();
   }

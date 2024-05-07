@@ -31,6 +31,8 @@ export class SeekerJobCardComponent {
       .collection('users')
       .doc(this.job.postedby)
       .valueChanges();
+      console.log("initialized");
+      console.log(this.job);
     this.User = this.CompanyService.getCurrentUserData();
   }
 
@@ -49,8 +51,42 @@ export class SeekerJobCardComponent {
     console.log(id);
     this.SeekerService.saveJob(id, user, job.id);
   }
-  UnsaveJob(job: any, user: any) {}
+  UnsaveJob(job: any, user: any) {
+    const id = this.CompanyService.getCurrentUserID();
+    this.SeekerService.unsaveJob(id , user, job.id);
+  }
   checkSaved(job: any, user: any) {
     return user.savedJobsIds.includes(job.id);
   }
+
+  applyJob(job: any, company: any, user : any) {
+    // const id = this.CompanyService.getCurrentUserID();
+    // job.applicants.push(id);
+    // this.firestore.collection('jobs').doc(job.id).update(job);
+    // user.applicants.push(id);
+    // this.firestore.collection('users').doc(user.id).update(user);
+    
+    user.appliedJobsIds.push(job.id);
+    this.firestore.collection('users').doc(this.CompanyService.getCurrentUserID()).update(user);
+
+    job.applicants.push(this.CompanyService.getCurrentUserID());
+    this.firestore.collection('jobs').doc(job.id).update(job);
+
+    company.applicants.push(this.CompanyService.getCurrentUserID());
+    this.firestore.collection('users').doc(job.postedby).update(company);
+    
+    console.log(job);
+    console.log(company);
+    console.log(user);
+
+  
+  }
+
+  checkApplied(job: any, user: any) {
+    if(user.appliedJobsIds.includes(job.id)){
+      return true;
+    }else {
+      return false;
+    }
+}
 }

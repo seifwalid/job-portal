@@ -1,3 +1,7 @@
+
+*{
+    color: #000;
+}
 .card {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -119,11 +123,6 @@ button:hover {
 /* Style for error messages */
 .p-invalid {
   border-color: #dc3545 !important;
-}
-
-.applic{
-  color: black;
- margin-left:auto ;
 }
 .btn-cancel{
   color: red;

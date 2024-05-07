@@ -1,0 +1,93 @@
+
+
+<p-card
+  *ngIf="User | async as userData"
+  styleClass="user-form"
+  class="flex justify-content-center"
+>
+  <div>
+    <h2>user Profile</h2>
+    <div class="ui grid">
+      <div class="ui eight wide column" *ngIf="!isEditing">
+        <img  *ngIf="userData.profilePic" [src]="userData.profilePic "/>
+        <iframe *ngIf="userData.resume" [src]="sanitizer.bypassSecurityTrustResourceUrl(userData.resume)" style="width: 100%; height: 500px;"></iframe>
+
+
+        <ul class="list-unstyled">
+          <li><b>Name:</b> {{ userData.name }}</li>
+          <li><b>email:</b> {{ userData.email }}</li>
+        </ul>
+        
+        <button
+          (click)="editUserProfile()"
+          pButton
+          type="button"
+          class="btn-edit"
+          label="Edit Profile"
+          icon="pi pi-pencil"
+          iconPos="right"
+        ></button>
+      </div>
+
+      <div class="ui eight wide column" *ngIf="isEditing">
+        <p-card>
+          <form [formGroup]="contactForm" (ngSubmit)="updateCompanyProfile()">
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input
+                pInputText
+                type="text"
+                id="companyName"
+                formControlName="userName"
+                [ngModel]="userData.name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                pInputText
+                type="email"
+                id="email"
+                formControlName="email"
+                [ngModel]="userData.email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+                <label for="profilePic">profile</label>
+                <input
+                  pInputText
+                  type="file"
+                  id="profilePic"
+                  formControlName="profilePic"
+                  (change)="onProfileChange($event)"
+                  required
+                />
+              </div>
+            <div class="form-group">
+              <label for="resume">resume</label>
+              <input
+                pInputText
+                type="file"
+                id="resume"
+                formControlName="resume"
+                (change)="onResumeChange($event)"
+                required
+              />
+            </div>
+        
+            <button [ngClass]="{'disabled': !picEnabled||!resumeEnabled}"[disabled]="!picEnabled || !resumeEnabled" type="submit" class="btn btn-primary p-button p-component">
+             update Profile
+            </button>
+            <p-button (click)="editUserProfile()" icon="pi pi-times" severity="danger" class="btn-cancel"></p-button>
+          </form>
+        </p-card>
+      </div>
+    </div>
+  </div>
+  <p-messages [value]="error" severity="error" *ngIf="error"></p-messages>
+</p-card>
+<p-messages [value]="error" severity="error" *ngIf="error"></p-messages>
+<p-progressBar mode="indeterminate" *ngIf="isLoading"></p-progressBar>

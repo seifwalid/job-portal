@@ -1,7 +1,7 @@
 <div *ngIf="User|async as user ">
-    {{ user | json }}
+ 
     <div *ngIf="user.savedJobsIds">
-        <h1>i am here </h1>
+        <h1>savedJobs:</h1>
         <div *ngFor="let job of user.savedJobsIds">
             
             <app-saved-cards [id]="job"></app-saved-cards>

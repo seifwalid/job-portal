@@ -19,7 +19,27 @@
           [(ngModel)]="password"
         />
       </div>
-      <button type="submit">Register</button>
+      <div class="form-group">
+        <label for="password">profile Pic:</label>
+        <input
+          type="file"
+          id="profilePic"
+          name="profilePic"
+          [(ngModel)]="profilePic"
+          (change)="onProfileChange($event)"
+        />
+      </div>
+      <div class="form-group">
+        <label for="resume">resume</label>
+        <input
+          type="file"
+          id="resume"
+          name="resume"
+          [(ngModel)]="resume"
+          (change)="onResumeChange($event)"
+        />
+      </div>
+      <button [ngClass]="{'disabled': !picEnabled||!resumeEnabled} "type="submit" [disabled]="!picEnabled || !resumeEnabled">Register</button>
     </form>
   </div>
 </div>

@@ -11,6 +11,8 @@ import { CompanyProfileComponent } from './components/company-profile/company-pr
 import { JobListComponent } from './components/job-list/job-list.component';
 import { SavedJobsComponent } from './components/saved-jobs/saved-jobs.component';
 import { ImageTestComponent } from './components/image-test/image-test.component';
+import { SeekerProfileComponent } from './components/seeker-profile/seeker-profile.component';
+import { AllApplicantsComponent } from './components/all-applicants/all-applicants.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -25,6 +27,8 @@ const routes: Routes = [
   {path:"jobs",component:JobListComponent},
   { path: "register/seeker", component: SeekerRegistrationComponent },
   { path: "register/recruiter", component: RecruiterRegistrationComponent },
+  {path:"seekerProfile", component:SeekerProfileComponent},
+  { path:"allApps",component:AllApplicantsComponent}
 ];
 
 @NgModule({

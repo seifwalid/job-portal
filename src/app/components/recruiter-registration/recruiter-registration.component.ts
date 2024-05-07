@@ -46,10 +46,10 @@ export class RecruiterRegistrationComponent {
         companyDescription: this.companyDescription, 
         companyContactInfo: this.companyContactInfo, 
         postedJobsIds: [],
-        profilePic: this.url
-
+        profilePic: this.url,
+        applicants: []
       });
-
+    
       setTimeout(() => {
         window.location.href = "/login";
       }, 1000);

@@ -1,0 +1,7 @@
+<div *ngIf="User |async as user ">
+    <input type="text" [(ngModel)]="searchValue" placeholder="Search applicants...">
+  
+    <div *ngFor="let applicant of user.applicants">
+        <app-applicant-card [id]="applicant" [name]="searchValue"></app-applicant-card>
+    </div>
+</div>

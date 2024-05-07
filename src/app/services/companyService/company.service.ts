@@ -72,7 +72,10 @@ export class CompanyService {
   }
 
   
-
+  async deleteCompanyJob(job: any) {
+    this.db.collection('jobs').doc(job.id).delete();
+    console.log('deleted job');
+  }
   async createJob(user:any, job: any) {
     this.companyData = this.getCurrentUserData();
     
