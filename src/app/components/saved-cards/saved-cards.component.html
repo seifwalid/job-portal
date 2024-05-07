@@ -1,0 +1,41 @@
+<div *ngIf="User|async as user ">
+    <div *ngIf="jobs |async as job">
+    <div *ngIf="job.status == 'open'" class="card">
+      <div class="card-header">
+        {{ job.title }}
+      </div>
+      <div class="card-body">
+        <p>description: {{ job.description }}</p>
+        <p>Location: {{ job.location }}</p>
+        <p>Salary: {{ job.salary }}</p>
+        <p>Qualifications: {{ job.qualifications }}</p>
+  
+        <div *ngIf="expanded">
+          <p>Benefits: {{ job.benefits }}</p>
+          <p>Responsibilities: {{ job.responsibilities }}</p>
+        </div>
+  
+        <button
+          pButton
+          type="button"
+          label="View More"
+          (click)="toggleExpand(job)"
+        ></button>
+        <button pButton type="button" label="Apply"></button>
+        <button *ngIf="!checkSaved(job, user)"
+          pButton
+          (click)="saveJob(job, user)"
+          type="button"
+          label="Save"
+        ></button>
+        <button *ngIf="checkSaved(job, user)"
+          pButton
+          (click)="UnsaveJob(job, user)"
+          type="button"
+          label="UnSave"
+        ></button>
+      </div>
+    </div>
+    </div>
+  </div>
+  

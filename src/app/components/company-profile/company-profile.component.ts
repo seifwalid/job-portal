@@ -5,6 +5,7 @@ import { Observable, map, tap, toArray } from 'rxjs';
 import { User } from '../../models/User';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 @Component({
   selector: 'app-company-profile',
   templateUrl: './company-profile.component.html',
@@ -13,10 +14,12 @@ import { Message } from 'primeng/api';
 export class CompanyProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
-     private CompanyService: CompanyService
+     private CompanyService: CompanyService,
+     private storage: AngularFireStorage
   ) {}
 
     usedUser:any; 
+    url!: string;
   
   contactForm!: FormGroup;
   ngOnInit(): void {
@@ -87,6 +90,7 @@ this.companyData.subscribe(user => {
   user.companyContactInfo = contactInfo;
   user.companyDescription = description;
   user.email = email;
+  user.profilePic = this.url;
   console.log(user);
     
    this.CompanyService.updateUser(user);
@@ -94,6 +98,18 @@ this.companyData.subscribe(user => {
   this.isEditing = false;
 
   });
+
+  
  
+  }
+
+  async onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const path= `test/${file.name}`;
+      const upload = await this.storage.upload(path,file);
+      this.url = await upload.ref.getDownloadURL();
+     
+    }
   }
 }

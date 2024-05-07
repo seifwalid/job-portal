@@ -18,6 +18,17 @@
         [(ngModel)]="password"
       />
     </div>
+    <div class="form-group">
+      <label for="image">profile Pic :</label>
+      <input
+        (change)="onFileChange($event)"
+        type="file"
+        id="profile"
+        name="profilePic"
+        [(ngModel)]="profilePic"
+      />
+    </div>
+    <img *ngIf="url " [src]="url" alt="Preview" style="max-width: 200px; max-height: 200px;"/>
 
     <!-- Add company description -->
     <div class="form-group">

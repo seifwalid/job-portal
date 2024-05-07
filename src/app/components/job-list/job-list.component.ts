@@ -75,7 +75,7 @@ export class JobListComponent {
       };
       
       this.CompanyService.createJob(user, newjob);
-      this.add = false;
+       this.add = false;
       console.log(newjob);
     }
  

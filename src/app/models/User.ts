@@ -10,6 +10,7 @@ export interface User {
     savedJobsIds: User["role"] extends "seeker" ? string[] : null;
     companyDescription:User["role"] extends "seeker"? string[]:null;
     companyContactInfo:User["role"] extends "seeker"? string[]:null;
+    profilePic: string;
     
 }
 

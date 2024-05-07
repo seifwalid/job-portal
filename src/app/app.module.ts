@@ -43,6 +43,9 @@ import { CreateJobComponent } from './components/create-job/create-job.component
 import { SeekerJobListingComponent } from './components/seeker-job-listing/seeker-job-listing.component';
 import { SeekerJobCardComponent } from './components/seeker-job-card/seeker-job-card.component';
 import { PostedbyComponent } from './components/postedby/postedby.component';
+import { SavedJobsComponent } from './components/saved-jobs/saved-jobs.component';
+import { SavedCardsComponent } from './components/saved-cards/saved-cards.component';
+import { ImageTestComponent } from './components/image-test/image-test.component';
 
 
 
@@ -63,6 +66,9 @@ import { PostedbyComponent } from './components/postedby/postedby.component';
     SeekerJobListingComponent,
     SeekerJobCardComponent,
     PostedbyComponent,
+    SavedJobsComponent,
+    SavedCardsComponent,
+    ImageTestComponent,
   ],
   imports: [
     CardModule, 

@@ -9,11 +9,16 @@ import { SeekerPageComponent } from './components/seeker-page/seeker-page.compon
 import { RecruiterPageComponent } from './components/recruiter-page/recruiter-page.component';
 import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
 import { JobListComponent } from './components/job-list/job-list.component';
+import { SavedJobsComponent } from './components/saved-jobs/saved-jobs.component';
+import { ImageTestComponent } from './components/image-test/image-test.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "home", component: HomeComponent },
   { path: "seeker", component: SeekerJobListingComponent },
+  {path:"seeker",component:SeekerPageComponent},
+  {path:"test", component:ImageTestComponent}, 
+  {path:"savedJobs",component:SavedJobsComponent},
   { path:"profile",component:CompanyProfileComponent},
   { path: "recruiter", component: RecruiterPageComponent },
   { path: "login", component: LoginComponent },

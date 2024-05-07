@@ -17,7 +17,7 @@
   <ng-container  *ngIf="isLoggedIn && (user | async) as user">
     <ul class="navbar-nav" *ngIf="user.role === 'recruiter'">
       <li class="nav-item" *ngIf="isLoggedIn">
-        <a class="nav-link" routerLink="/home">Home</a>
+        <a class="nav-link" routerLink="/test">Home</a>
       </li>
 
       <li class="nav-item" *ngIf="isLoggedIn">
@@ -34,13 +34,13 @@
   <ng-container *ngIf="isLoggedIn && (user | async) as user">
     <ul class="navbar-nav" *ngIf="user.role === 'seeker'">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/home">Seeker Home</a>
+        <a class="nav-link" routerLink="/savedJobs">Saved Jobs </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/profile">Seeker Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/jobs">Seeker Jobs</a>
+        <a class="nav-link" routerLink="/seeker">Seeker Jobs</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="logout()">logout</a>
