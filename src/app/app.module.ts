@@ -51,7 +51,6 @@ import { ApplicantCardComponent } from './components/applicant-card/applicant-ca
 import { AllApplicantsComponent } from './components/all-applicants/all-applicants.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +77,7 @@ import { AllApplicantsComponent } from './components/all-applicants/all-applican
   ],
   imports: [
     CardModule, 
+    
     InputMaskModule,
     InputTextModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),

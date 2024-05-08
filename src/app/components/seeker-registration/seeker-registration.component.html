@@ -1,14 +1,15 @@
 <div class="form-container">
   <div class="registration-container">
     <h2>Seeker Registration</h2>
-    <form (ngSubmit)="handleSeekerRegistration()">
+    <form [formGroup]="form" (ngSubmit)="handleSeekerRegistration()">
       <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" [(ngModel)]="name" />
+        <input type="text" id="name" name="name" formControlName="name" />
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" [(ngModel)]="email" />
+        <input type="email" id="email" name="email" formControlName="email" [class.invalid]="isInvalid('email')">
+        <small class="p-error block" *ngIf="isInvalid('email')">{{ getErrorMessage('email') }}</small>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
@@ -16,8 +17,9 @@
           type="password"
           id="password"
           name="password"
-          [(ngModel)]="password"
-        />
+          formControlName="password" [class.invalid]="isInvalid('password')">
+          <small class="p-error block" *ngIf="isInvalid('password')">{{ getErrorMessage('password') }}</small>
+        
       </div>
       <div class="form-group">
         <label for="password">profile Pic:</label>

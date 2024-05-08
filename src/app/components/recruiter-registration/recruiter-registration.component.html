@@ -1,23 +1,27 @@
 <div class="registration-container">
   <h2>Recruiter Registration</h2>
-  <form (ngSubmit)="handleRecruiterRegistration()">
+  <form [formGroup]="form" (ngSubmit)="handleRecruiterRegistration()">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" [(ngModel)]="name" />
+      <input type="text" id="name" name="name" [(ngModel)]="name" formControlName="name" />
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" [(ngModel)]="email" />
+      <input style="width: 100%;" type="text" pInputText placeholder="email address" formControlName="email" [class.invalid]="isInvalid('email')">
+      <small class="p-error block" *ngIf="isInvalid('email')">{{ getErrorMessage('email') }}</small>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <input
+      <!-- <input
         type="password"
         id="password"
         name="password"
         [(ngModel)]="password"
-      />
+      /> -->
+      <input style="width: 100%;" type="password" pInputText placeholder="password" formControlName="password" [class.invalid]="isInvalid('password')">
+      <small style="width: 100%;" class="p-error block" *ngIf="isInvalid('password')">{{ getErrorMessage('password') }}</small>
     </div>
+ 
     <div class="form-group">
       <label for="image">profile Pic :</label>
       <input
@@ -33,15 +37,18 @@
     <!-- Add company description -->
     <div class="form-group">
       <label for="description">Company Description:</label>
-      <textarea id="description" name="description" [(ngModel)]="companyDescription"></textarea>
+      <textarea id="description" formControlName="companyDescription" name="description" [(ngModel)]="companyDescription"></textarea>
     </div>
 
     <!-- Add contact information using PrimeNG components -->
     <div class="form-group">
       <label for="phone">Phone:</label>
-      <p-inputMask mask="(+99) 999-999-9999" id="phone" name="phone" [(ngModel)]="companyContactInfo"></p-inputMask>
+      <p-inputMask mask="(+99) 999-999-9999" id="phone" formControlName="companyContactInfo" name="phone" [(ngModel)]="companyContactInfo"></p-inputMask>
     </div>
 
     <button type="submit">Register as Recruiter</button>
   </form>
 </div>
+
+
+

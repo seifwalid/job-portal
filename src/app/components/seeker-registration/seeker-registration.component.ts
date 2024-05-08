@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
 import { v4 as uuid } from 'uuid';
 
@@ -13,9 +14,9 @@ import { v4 as uuid } from 'uuid';
 })
 export class SeekerRegistrationComponent {
 
-  @Input() name: string = '';
-  @Input() email: string = '';
-  @Input() password: string = '';
+  // @Input() name: string = '';
+  // @Input() email: string = '';
+  // @Input() password: string = '';
   @Input() profilePic: string = '';
   @Input() resume: string = '';
   picEnabled: boolean = false;
@@ -24,20 +25,25 @@ export class SeekerRegistrationComponent {
   resumeUrl!: string;
   role: string = 'seeker';
   res:any;
+
+  form!:FormGroup
   constructor(public readonly auth: AngularFireAuth, private db: AngularFirestore
-  ,private companyService:CompanyService , private storage :AngularFireStorage) { }
+  ,private companyService:CompanyService ,private fb:FormBuilder, private storage :AngularFireStorage) { }
 
   ngOnInit(): void {
-
+    this.form = this.fb.group({
+      name:['',Validators.required],
+      email:['',Validators.email],
+      password:['',Validators.minLength(6)],})
   }
   async handleSeekerRegistration() {
     console.log("handeling regestration");
     try {
-      this.res = await this.auth.createUserWithEmailAndPassword(this.email, this.password);
+      this.res = await this.auth.createUserWithEmailAndPassword(this.form.value.email, this.form.value.password);
 
       await this.db.collection("users").doc(this.res.user?.uid).set({
-        name: this.name,
-        email: this.email,
+        name: this.form.value.name,
+        email: this.form.value.email,
         role: this.role,
         appliedJobsIds: [],
         savedJobsIds: [],
@@ -73,5 +79,24 @@ export class SeekerRegistrationComponent {
       this.picEnabled = true;
     }
   }
-  
+  isInvalid(field: string): boolean {
+    const control = this.form.get(field);
+    if (control) {
+      return control.invalid && (control.touched || control.dirty);
+    }
+    return false;
+  }
+  getErrorMessage(field: string): string {
+    const control = this.form.get(field);
+    if (!control) return '';
+
+    const errors = control.errors;
+    if (!errors) return '';
+
+    if (errors['required']) return 'You must enter a value';
+    if (errors['email']) return 'Not a valid email';
+    if (errors['minlength']) return 'Password must be at least 6 characters long';
+    
+    return '';
+  }
 }
