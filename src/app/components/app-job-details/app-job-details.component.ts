@@ -14,7 +14,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AppJobDetailsComponent {
   @Input() jobId!: string;
-
+  
   @Input() user!: any;
   applicants:boolean = false;
   edit = false;

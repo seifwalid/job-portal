@@ -1,4 +1,5 @@
 <div *ngIf="users | async as user">
+
     <div style="display: flex; margin: 20px 30px 10px 0px; justify-content: flex-end;">
         <button *ngIf="!add" pButton type="button" icon="pi pi-plus" label="Add Job" class="custom-button" (click)="toggleAdd()"></button>
 
@@ -46,7 +47,6 @@
     <h3>Posted Jobs:</h3>
     <ul>
       <li *ngFor="let jobId of user.postedJobsIds">
-        
          <app-job-details [jobId]="jobId" [user]="user"></app-job-details> 
       </li>
     </ul>

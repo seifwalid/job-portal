@@ -55,6 +55,7 @@ export class JobListComponent {
       benefits: ['', Validators.required],
       responsibilities: ['', Validators.required]
     });
+  
     this.users = this.CompanyService.getCurrentUserData();
   }
     createjob(user:any){
