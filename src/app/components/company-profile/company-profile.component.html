@@ -9,22 +9,27 @@
     <h2>Company Profile</h2>
     <div class="ui grid">
       <div class="ui eight wide column" *ngIf="!isEditing">
-        <img  *ngIf="companyData.profilePic" [src]="companyData.profilePic "/>
-        <ul class="list-unstyled">
-          <li><b>Name:</b> {{ companyData.name }}</li>
-          <li><b>Address:</b> {{ companyData.companyDescription }}</li>
-          <li><b>ConactInfo:</b> {{ companyData.companyContactInfo }}</li>
-          <li><b>email:</b> {{ companyData.email }}</li>
-        </ul>
-        <button
-          (click)="editCompanyProfile()"
-          pButton
-          type="button"
-          class="btn-edit"
-          label="Edit Profile"
-          icon="pi pi-pencil"
-          iconPos="right"
-        ></button>
+        <div>
+          <img  *ngIf="companyData.profilePic" [src]="companyData.profilePic "/>
+        </div>
+        <div>
+          <ul class="list-unstyled">
+            <li><b>Name:</b> {{ companyData.name }}</li>
+            <li><b>Address:</b> {{ companyData.companyDescription }}</li>
+            <li><b>ConactInfo:</b> {{ companyData.companyContactInfo }}</li>
+            <li><b>email:</b> {{ companyData.email }}</li>
+          </ul>
+          <button
+            (click)="editCompanyProfile()"
+            pButton
+            type="button"
+            class="btn-edit"
+            label="Edit Profile"
+            icon="pi pi-pencil"
+            iconPos="right"
+          ></button>
+        </div>
+
       </div>
 
       <div class="ui eight wide column" *ngIf="isEditing">
