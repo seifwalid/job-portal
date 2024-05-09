@@ -18,6 +18,7 @@ import { Observable, first, map, observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { getAuth } from 'firebase/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Job } from '../../models/Job';
 
 @Injectable({
   providedIn: 'root',
@@ -53,15 +54,6 @@ export class CompanyService {
     const Uid = this.getCurrentUserID();
     this.companyData = this.getCurrentUserData();
     this.db.collection('jobs').doc(job.id).update(job);
-
-    // await this.db.doc(`users/${Uid}`).update({
-
-    //     // Spread the existing properties of the user
-    //   ...this.companyData,
-    //   // Add the new jobRef string to the postedJobsIds array
-    //   postedJobsIds: [...(this.companyData?.postedJobsIds ?? []), id],
-    // });
-
     console.log('updated');
   }
 

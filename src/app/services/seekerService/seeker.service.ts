@@ -70,20 +70,10 @@ export class SeekerService {
 
     
 
-    // import { collection, collectionData, query, where } from '@angular/fire/firestore';
-
-    // const productsCollection = collection(this.firestore, 'products');
-    // const q = query(
-    //   productsCollection,
-    //   where('title', '==', 'Okay'), // First condition
-    //   where('price', '>=', 100) // Second condition (price greater than or equal to 100)
-    // );
-    // const result = collectionData(q);
-    // return result as Observable<any>;
   }
 
   saveJob(id:any , user:any, jobId :string) {
-    console.log("i am inside the job ");
+
    
     user.savedJobsIds.push(jobId);
     console.log(user);

@@ -22,7 +22,9 @@
           label="View More"
           (click)="toggleExpand(job)"
         ></button>
-        <button pButton type="button" label="Apply"></button>
+        <button *ngIf="!checkApplied(job, user)" pButton type="button" label="Apply" ></button>
+
+        <button *ngIf="checkApplied(job, user)" pButton type="button" label="already Applied"  class="disabled" [disabled]="true"></button>
         <button *ngIf="!checkSaved(job, user)"
           pButton
           (click)="saveJob(job, user)"

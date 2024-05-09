@@ -15,7 +15,7 @@ import { SeekerProfileComponent } from './components/seeker-profile/seeker-profi
 import { AllApplicantsComponent } from './components/all-applicants/all-applicants.component';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
+  { path: "", component: LoginComponent },
   { path: "home", component: HomeComponent },
   { path: "seeker", component: SeekerJobListingComponent },
   {path:"seeker",component:SeekerPageComponent},

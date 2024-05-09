@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +17,7 @@ export class LoginComponent {
   dbUser: any | null = {};
   role: "seeker" | "recruiter" | null = null;
 
-  constructor(public readonly auth: AngularFireAuth, private db: AngularFirestore
+  constructor(public readonly auth: AngularFireAuth,private snackBar:MatSnackBar, private db: AngularFirestore
   ) { }
 
   ngOnInit(): void {
@@ -24,10 +25,10 @@ export class LoginComponent {
       if (user) {
         this.db.collection("users").doc(user.uid).valueChanges().subscribe((u: any) => {
           if (u && u.role === "seeker") {
-            window.location.href = "/seeker";
+            window.location.href = "/seekerProfile";
           }
           else if (u && u.role === "recruiter") {
-            window.location.href = "/recruiter";
+            window.location.href = "/profile";
           }
         })
       }
@@ -45,6 +46,10 @@ export class LoginComponent {
           window.location.href = "/recruiter";
         }
       })
-    }).catch((e) => { console.log(e) })
+    }).catch((e) => { 
+      this.snackBar.open('Invalid username or password','close', {
+        duration: 3000,
+      });
+     })
   }
 }

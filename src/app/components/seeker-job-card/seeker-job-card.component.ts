@@ -60,11 +60,7 @@ export class SeekerJobCardComponent {
   }
 
   applyJob(job: any, company: any, user : any) {
-    // const id = this.CompanyService.getCurrentUserID();
-    // job.applicants.push(id);
-    // this.firestore.collection('jobs').doc(job.id).update(job);
-    // user.applicants.push(id);
-    // this.firestore.collection('users').doc(user.id).update(user);
+
     
     user.appliedJobsIds.push(job.id);
     this.firestore.collection('users').doc(this.CompanyService.getCurrentUserID()).update(user);

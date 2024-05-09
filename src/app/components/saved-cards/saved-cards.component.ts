@@ -44,4 +44,11 @@ UnsaveJob(job: any, user: any) {
 checkSaved(job: any, user: any) {
   return user.savedJobsIds.includes(job.id);
 }
+checkApplied(job: any, user: any) {
+  if(user.appliedJobsIds.includes(job.id)){
+    return true;
+  }else {
+    return false;
+  }
+}
 }

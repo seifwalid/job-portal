@@ -49,11 +49,12 @@ import { ImageTestComponent } from './components/image-test/image-test.component
 import { SeekerProfileComponent } from './components/seeker-profile/seeker-profile.component';
 import { ApplicantCardComponent } from './components/applicant-card/applicant-card.component';
 import { AllApplicantsComponent } from './components/all-applicants/all-applicants.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
+
     HomeComponent,
     LoginComponent,
     SeekerRegistrationComponent,
@@ -77,7 +78,7 @@ import { AllApplicantsComponent } from './components/all-applicants/all-applican
   ],
   imports: [
     CardModule, 
-    
+    BrowserAnimationsModule,
     InputMaskModule,
     InputTextModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),

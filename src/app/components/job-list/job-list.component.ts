@@ -36,15 +36,7 @@ export class JobListComponent {
     private CompanyService: CompanyService
   ) {}
 
-  // async test() {
-  //   const { uid } = (await firstValueFrom(this.auth.user))!;
-  //   const { appliedJobsIds } = (await this.userService.getUser(uid))!;
-  //   const arr = (appliedJobsIds ?? []).map(async (job) => {
-  //     const jobs$ = this.db.collection("jobs").doc(job).valueChanges();
-  //     return await firstValueFrom(jobs$);
-  //   })
-  //   console.log(arr)
-  // }
+  
   async ngOnInit() {
     this.jobForm = this.fb.group({
       title: ['', Validators.required],
@@ -90,42 +82,7 @@ export class JobListComponent {
     this.auth.signOut();
   }
 
-  // test(id: string) {
-  //   const usersCOllection = collection(this.fire, 'jobs');
-  //   const UserDoc = doc(usersCOllection, id);
-  //   const users = docData(UserDoc);
-  //   console.log(users);
-  //   return users as Observable<Job>;
-  // }
-
-  // fetchJobsDetails(id: any) {
-  //   const usersCOllection = collection(this.fire, 'jobs');
-  //   const UserDoc = doc(usersCOllection, id);
-  //   const users = docData(UserDoc);
-  //   console.log(users);
-  //   return users as Observable<Job>;
-  // }
-
-  // async createJob() {
-  //   this.user = await this.userService.getUser(this.uid);
-  //   const newJob = {
-  //     id: uuid(),
-  //     title: 'test',
-  //     description: 'test',
-  //     companyName: 'test',
-  //     companyDescription: 'test',
-  //     companyContactInfo: 'test',
-  //     location: 'test',
-  //     salary: 1000,
-  //     postedBy: this.db.doc(`users/${this.uid}`).ref,
-  //   };
-  //   await this.db.collection('jobs').doc(newJob.id).set(newJob);
-  //   const jobRef = this.db.collection('jobs').doc(newJob.id).ref;
-  //   await this.db.doc(`users/${this.uid}`).update({
-  //     ...this.user,
-  //     postedJobsIds: [...(this.user?.postedJobsIds ?? []), jobRef],
-  //   });
-  // }
+ 
 
   editJob(job: any) {
     console.log(job);
