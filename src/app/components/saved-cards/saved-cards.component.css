@@ -1,0 +1,133 @@
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  } */
+  
+  .card-header {
+    padding: 15px 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    background-color: #f5f5f5;
+  }
+  
+  .card-body {
+    padding: 20px;
+    color: #333;
+  }
+  
+  .card-body p {
+    margin-bottom: 10px;
+  }
+  
+  .card-footer {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #eee;
+  }
+  
+  .p-button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .p-button:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .p-button[icon="pi pi-pencil"] {
+    color: #3c94ff;
+  }
+  
+  .p-button[icon="pi pi-trash"] {
+    color: #ff3333;
+  }
+  
+  .p-button[icon="pi pi-pause"] {
+    color: #f99;
+  }
+  
+  .p-button[icon="pi pi-play"] {
+    color: #00c853;
+  }
+  
+  .job-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .p-field {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .p-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .p-input select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: black;
+    border: none;
+    margin-right: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-cancel {
+    color: red;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .btn-submit {
+    color: green;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  

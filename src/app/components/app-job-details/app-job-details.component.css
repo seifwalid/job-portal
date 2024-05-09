@@ -13,6 +13,9 @@
   }
   
   .card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 15px 20px;
     font-weight: bold;
     border-bottom: 1px solid #eee;
@@ -123,7 +126,6 @@ button:hover {
 
 .applic{
   color: black;
- margin-left:auto ;
 }
 .btn-cancel{
   color: red;
